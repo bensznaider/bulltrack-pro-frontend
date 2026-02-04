@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { signupUser } from '@/lib/api';
 import { Loader } from '@/components/Loader';
 
 export default function SignupPage() {
@@ -18,8 +17,19 @@ export default function SignupPage() {
     setIsLoading(true);
 
     try {
-      const data = await signupUser(email, password);
-      document.cookie = `access_token=${encodeURIComponent(data.access_token)}; path=/;`;
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Signup failed');
+      }
+
       router.replace('/dashboard');
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Signup failed';

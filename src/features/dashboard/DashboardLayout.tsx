@@ -32,7 +32,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <aside className="w-[20%] text-white p-6">
           {/* Sidebar content */}
         </aside>
-        <main className="flex-1 overflow-auto p-6 bg-[#F7F7F7] rounded-t-2xl">
+        <main className="flex-1 overflow-auto p-[32px] bg-[#F7F7F7] rounded-t-2xl">
           {children}
         </main>
       </div>
