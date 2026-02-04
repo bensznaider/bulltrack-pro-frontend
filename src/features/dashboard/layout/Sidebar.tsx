@@ -52,75 +52,75 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="w-[20%] text-white text-[14px] p-6 overflow-y-auto bg-[#1a1f1d]">
-      <div className="mb-6">
-        <h2 className="font-medium text-[14px] mb-4 text-white">
+    <aside className="w-full text-white text-sm md:text-[14px] p-4 md:p-6 overflow-y-auto bg-[#1a1f1d] md:min-h-full">
+      <div className="mb-4 md:mb-6">
+        <h2 className="font-medium text-sm md:text-[14px] mb-3 md:mb-4 text-white">
           FILTROS ACTIVOS
         </h2>
 
-        <div className="mb-3">
-          <h3 className="font-normal text-white mb-4">Origen</h3>
+        <div className="mb-2 md:mb-3">
+          <h3 className="font-normal text-white mb-3 md:mb-4 text-sm">Origen</h3>
           <button
             onClick={() => handleOrigenChange(undefined)}
-            className={`w-full text-left bg-[#152B1E] border rounded-[12px] px-4 py-3 flex items-center justify-between cursor-pointer hover:bg-[#2f3f37] transition-colors ${
+            className={`w-full text-left bg-[#152B1E] border rounded-[12px] px-3 md:px-4 py-2 md:py-3 flex items-center justify-between cursor-pointer hover:bg-[#2f3f37] transition-colors text-sm ${
               !filters.origen ? "border-[#36E27B]" : "border-[#36E27B]/30"
             }`}
           >
-            <span className="text-white text-[14px]">Todos</span>
+            <span className="text-white text-sm md:text-[14px]">Todos</span>
             {!filters.origen && (
-              <div className="w-5 h-5 rounded-[4px] border-2 border-[#36E27B] bg-[#36E27B] flex items-center justify-center">
+              <div className="w-5 h-5 rounded-[4px] border-2 border-[#36E27B] bg-[#36E27B] flex items-center justify-center flex-shrink-0">
                 <Check size={14} className="text-black" />
               </div>
             )}
           </button>
         </div>
 
-        <div className="mb-3">
+        <div className="mb-2 md:mb-3">
           <button
             onClick={() => handleOrigenChange("propio")}
-            className={`w-full text-left bg-[#152B1E] border rounded-[12px] px-4 py-3 flex items-center justify-between cursor-pointer hover:bg-[#2f3f37] transition-colors ${
+            className={`w-full text-left bg-[#152B1E] border rounded-[12px] px-3 md:px-4 py-2 md:py-3 flex items-center justify-between cursor-pointer hover:bg-[#2f3f37] transition-colors text-sm ${
               filters.origen === "propio"
                 ? "border-[#36E27B]"
                 : "border-[#36E27B]/30"
             }`}
           >
-            <span className="text-white text-[14px]">Toros propios</span>
+            <span className="text-white text-sm md:text-[14px]">Toros propios</span>
             {filters.origen === "propio" && (
-              <div className="w-5 h-5 rounded-[4px] border-2 border-[#36E27B] bg-[#36E27B] flex items-center justify-center">
+              <div className="w-5 h-5 rounded-[4px] border-2 border-[#36E27B] bg-[#36E27B] flex items-center justify-center flex-shrink-0">
                 <Check size={14} className="text-black" />
               </div>
             )}
           </button>
         </div>
 
-        <div className="mb-3">
+        <div className="mb-3 md:mb-3">
           <button
             onClick={() => handleOrigenChange("catalogo")}
-            className={`w-full text-left bg-[#152B1E] border rounded-[12px] px-4 py-3 flex items-center justify-between cursor-pointer hover:bg-[#2f3f37] transition-colors ${
+            className={`w-full text-left bg-[#152B1E] border rounded-[12px] px-3 md:px-4 py-2 md:py-3 flex items-center justify-between cursor-pointer hover:bg-[#2f3f37] transition-colors text-sm ${
               filters.origen === "catalogo"
                 ? "border-[#36E27B]"
                 : "border-[#36E27B]/30"
             }`}
           >
-            <span className="text-white text-[14px]">Catálogo</span>
+            <span className="text-white text-sm md:text-[14px]">Catálogo</span>
             {filters.origen === "catalogo" && (
-              <div className="w-5 h-5 rounded-[4px] border-2 border-[#36E27B] bg-[#36E27B] flex items-center justify-center">
+              <div className="w-5 h-5 rounded-[4px] border-2 border-[#36E27B] bg-[#36E27B] flex items-center justify-center flex-shrink-0">
                 <Check size={14} className="text-black" />
               </div>
             )}
           </button>
         </div>
 
-        <div className="mb-6">
+        <div className="mb-4 md:mb-6">
           <button
             onClick={handleFavoritesFilter}
-            className={`w-full text-left bg-[#152B1E] border rounded-[12px] px-4 py-3 flex items-center justify-between cursor-pointer hover:bg-[#2f3f37] transition-colors ${
+            className={`w-full text-left bg-[#152B1E] border rounded-[12px] px-3 md:px-4 py-2 md:py-3 flex items-center justify-between cursor-pointer hover:bg-[#2f3f37] transition-colors text-sm ${
               hasOnlyFavorites ? "border-[#36E27B]" : "border-[#36E27B]/30"
             }`}
           >
-            <span className="text-white text-[14px]">Favoritos</span>
+            <span className="text-white text-sm md:text-[14px]">Favoritos</span>
             {hasOnlyFavorites && (
-              <div className="w-5 h-5 rounded-[4px] border-2 border-[#36E27B] bg-[#36E27B] flex items-center justify-center">
+              <div className="w-5 h-5 rounded-[4px] border-2 border-[#36E27B] bg-[#36E27B] flex items-center justify-center flex-shrink-0">
                 <Check size={14} className="text-black" />
               </div>
             )}
@@ -128,20 +128,20 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <div className="mb-6 border-t border-white/70">
-        <h2 className="font-medium text-[14px] mb-4 text-white mt-6">
+      <div className="mb-4 md:mb-6 border-t border-white/70">
+        <h2 className="font-medium text-sm md:text-[14px] mb-3 md:mb-4 text-white mt-4 md:mt-6">
           FILTROS PRODUCTIVOS
         </h2>
 
-        <div className="mb-4 flex justify-between items-center bg-[#152B1E] rounded-[8px] p-4">
-          <div className="text-white text-[14px]">Para vaquillona</div>
+        <div className="mb-3 md:mb-4 flex justify-between items-center bg-[#152B1E] rounded-[8px] p-3 md:p-4">
+          <div className="text-white text-sm md:text-[14px]">Para vaquillona</div>
           <button
             onClick={() =>
               handleUsoChange(
                 filters.uso === "vaquillona" ? undefined : "vaquillona",
               )
             }
-            className={`rounded-full w-12 h-6 relative cursor-pointer transition-all flex items-center ${
+            className={`rounded-full w-12 h-6 relative cursor-pointer transition-all flex items-center flex-shrink-0 ${
               filters.uso === "vaquillona"
                 ? "bg-[#36E27B] justify-end"
                 : "bg-black border border-[#36E27B] justify-start"
@@ -155,16 +155,16 @@ export default function Sidebar() {
           </button>
         </div>
 
-        <div className="mb-6">
-          <h3 className="font-normal text-white mb-4">Pelaje</h3>
+        <div className="mb-4 md:mb-6">
+          <h3 className="font-normal text-white mb-3 md:mb-4 text-sm">Pelaje</h3>
           <div className="relative">
             <button
               onClick={() => setShowPelajeDropdown(!showPelajeDropdown)}
-              className={`w-full text-left bg-[#152B1E] border rounded-[12px] px-4 py-3 flex items-center justify-between cursor-pointer hover:bg-[#2f3f37] transition-colors ${
+              className={`w-full text-left bg-[#152B1E] border rounded-[12px] px-3 md:px-4 py-2 md:py-3 flex items-center justify-between cursor-pointer hover:bg-[#2f3f37] transition-colors text-sm ${
                 filters.pelaje ? "border-[#36E27B]" : "border-[#36E27B]/30"
               }`}
             >
-              <span className="text-white text-[14px]">
+              <span className="text-white text-sm md:text-[14px]">
                 {filters.pelaje === "negro"
                   ? "Negro"
                   : filters.pelaje === "colorado"
@@ -173,7 +173,7 @@ export default function Sidebar() {
               </span>
               <ChevronDown
                 size={16}
-                className={`text-[#36E27B] transition-transform ${
+                className={`text-[#36E27B] transition-transform flex-shrink-0 ${
                   showPelajeDropdown ? "rotate-180" : ""
                 }`}
               />
@@ -185,7 +185,7 @@ export default function Sidebar() {
                     handlePelajeChange(undefined);
                     setShowPelajeDropdown(false);
                   }}
-                  className="w-full text-left px-4 py-3 text-white text-[14px] hover:bg-[#2f3f37] transition-colors border-b border-[#36E27B]/20"
+                  className="w-full text-left px-3 md:px-4 py-2 md:py-3 text-white text-sm md:text-[14px] hover:bg-[#2f3f37] transition-colors border-b border-[#36E27B]/20"
                 >
                   Todos
                 </button>
@@ -194,7 +194,7 @@ export default function Sidebar() {
                     handlePelajeChange("negro");
                     setShowPelajeDropdown(false);
                   }}
-                  className="w-full text-left px-4 py-3 text-white text-[14px] hover:bg-[#2f3f37] transition-colors border-b border-[#36E27B]/20"
+                  className="w-full text-left px-3 md:px-4 py-2 md:py-3 text-white text-sm md:text-[14px] hover:bg-[#2f3f37] transition-colors border-b border-[#36E27B]/20"
                 >
                   Negro
                 </button>
@@ -203,7 +203,7 @@ export default function Sidebar() {
                     handlePelajeChange("colorado");
                     setShowPelajeDropdown(false);
                   }}
-                  className="w-full text-left px-4 py-3 text-white text-[14px] hover:bg-[#2f3f37] transition-colors"
+                  className="w-full text-left px-3 md:px-4 py-2 md:py-3 text-white text-sm md:text-[14px] hover:bg-[#2f3f37] transition-colors"
                 >
                   Colorado
                 </button>
@@ -213,23 +213,23 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <div className="mb-6">
-        <h2 className="font-medium text-[14px] mb-4 text-white">
+      <div className="mb-4 md:mb-6">
+        <h2 className="font-medium text-sm md:text-[14px] mb-3 md:mb-4 text-white">
           ORDENAMIENTO
         </h2>
         <div className="relative">
           <button
             onClick={() => setShowOrdenDropdown(!showOrdenDropdown)}
-            className="w-full text-left bg-[#152B1E] border border-[#36E27B]/30 rounded-[12px] px-4 py-3 flex items-center justify-between cursor-pointer hover:bg-[#2f3f37] transition-colors"
+            className="w-full text-left bg-[#152B1E] border border-[#36E27B]/30 rounded-[12px] px-3 md:px-4 py-2 md:py-3 flex items-center justify-between cursor-pointer hover:bg-[#2f3f37] transition-colors text-sm"
           >
-            <span className="text-white text-[14px]">
+            <span className="text-white text-sm md:text-[14px]">
               {filters.sort === "score_asc"
                 ? "Score peor a mejor"
                 : "Score mejor a peor"}
             </span>
             <ChevronDown
               size={16}
-              className={`text-[#36E27B] transition-transform ${
+              className={`text-[#36E27B] transition-transform flex-shrink-0 ${
                 showOrdenDropdown ? "rotate-180" : ""
               }`}
             />
@@ -241,7 +241,7 @@ export default function Sidebar() {
                   handleSortChange("score_desc");
                   setShowOrdenDropdown(false);
                 }}
-                className="w-full text-left px-4 py-3 text-white text-[14px] hover:bg-[#2f3f37] transition-colors border-b border-[#36E27B]/20"
+                className="w-full text-left px-3 md:px-4 py-2 md:py-3 text-white text-sm md:text-[14px] hover:bg-[#2f3f37] transition-colors border-b border-[#36E27B]/20"
               >
                 Score mejor a peor
               </button>
@@ -250,7 +250,7 @@ export default function Sidebar() {
                   handleSortChange("score_asc");
                   setShowOrdenDropdown(false);
                 }}
-                className="w-full text-left px-4 py-3 text-white text-[14px] hover:bg-[#2f3f37] transition-colors"
+                className="w-full text-left px-3 md:px-4 py-2 md:py-3 text-white text-sm md:text-[14px] hover:bg-[#2f3f37] transition-colors"
               >
                 Score peor a mejor
               </button>
@@ -259,19 +259,19 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <div className="border-t border-white/70 pt-6">
-        <div className="bg-[#152B1E] border border-[#36E27B]/30 rounded-[12px] px-4 py-3 mb-4">
-          <p className="text-white text-[14px] font-semibold mb-1">
+      <div className="border-t border-white/70 pt-4 md:pt-6">
+        <div className="bg-[#152B1E] border border-[#36E27B]/30 rounded-[12px] px-3 md:px-4 py-3 md:py-3 mb-3 md:mb-4">
+          <p className="text-white text-sm md:text-[14px] font-semibold mb-1">
             Objetivo actual
           </p>
-          <p className="text-white text-[14px] font-light mb-1">
+          <p className="text-white text-xs md:text-[14px] font-light mb-0">
             Maximizar la ganancia de peso (destete) manteniendo facilidad de
             parto.
           </p>
         </div>
         <button
           onClick={() => {}}
-          className="w-full flex items-center justify-center gap-2 border-2 border-[#36E27B] text-[#36E27B] rounded-[12px] px-4 py-3 font-medium text-[14px] hover:bg-[#36E27B]/10 transition-colors cursor-pointer"
+          className="w-full flex items-center justify-center gap-2 border-2 border-[#36E27B] text-[#36E27B] rounded-[12px] px-3 md:px-4 py-2 md:py-3 font-medium text-sm md:text-[14px] hover:bg-[#36E27B]/10 transition-colors cursor-pointer"
         >
           <ArrowLeft size={16} />
           Editar criterios
