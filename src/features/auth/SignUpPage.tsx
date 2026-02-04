@@ -30,6 +30,8 @@ export default function SignupPage() {
         throw new Error(errorData.error || 'Signup failed');
       }
 
+      // Store email in localStorage
+      localStorage.setItem('userEmail', email);
       router.replace('/dashboard');
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Signup failed';

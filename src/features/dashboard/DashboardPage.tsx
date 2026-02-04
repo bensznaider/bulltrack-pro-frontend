@@ -66,6 +66,10 @@ export default function DashboardPage() {
     }, 200);
 
     return () => clearTimeout(timer);
+    // filters and updateFilters are context values that change frequently and should not
+    // be in the dependency array as they would trigger the effect on every render.
+    // Only searchQuery should trigger the debounced search to avoid excessive API calls.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery]);
 
   const lastUpdateText = useMemo(() => {

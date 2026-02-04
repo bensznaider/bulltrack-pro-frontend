@@ -30,6 +30,8 @@ export default function LoginPage() {
         throw new Error(errorData.error || 'Login failed');
       }
 
+      // Store email in localStorage
+      localStorage.setItem('userEmail', email);
       router.replace("/dashboard");
     } catch (err) {
       const message = err instanceof Error ? err.message : "Login failed";
