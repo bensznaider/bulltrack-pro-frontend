@@ -45,8 +45,8 @@ export default function LoginPage() {
     <main className="min-h-screen flex items-center justify-center p-6 bg-[#111714]">
       <div className="w-full max-w-sm space-y-4 bg-white p-6 rounded-lg shadow-lg">
         <span className="flex flex-col gap-2 items-center">
-          <h1 className="text-2xl font-semibold">Bulltrack Pro</h1>
-          <h2 className="text-xl">Login</h2>
+          <h1 className="text-2xl font-semibold text-[#2D2D2D]">Bulltrack Pro</h1>
+          <h2 className="text-xl text-[#2D2D2D]">Login</h2>
         </span>
         <form
         className="flex flex-col gap-3"
@@ -59,7 +59,7 @@ export default function LoginPage() {
           )}
 
           <input
-            className="w-full border rounded px-3 py-2"
+            className="w-full border rounded px-3 py-2 text-[#2D2D2D]"
             type="email"
             id="email"
             name="email"
@@ -70,7 +70,7 @@ export default function LoginPage() {
             required
           />
           <input
-            className="w-full border rounded px-3 py-2"
+            className="w-full border rounded px-3 py-2 text-[#2D2D2D]"
             type="password"
             id="password"
             name="password"
@@ -85,9 +85,9 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="text-sm">
+        <p className="text-sm text-[#2D2D2D]">
           Todavía no tenés una cuenta?{" "}
-          <a className="underline" href="/signup">
+          <a className="underline text-[#2D2D2D]" href="/signup">
             Registrate
           </a>
         </p>

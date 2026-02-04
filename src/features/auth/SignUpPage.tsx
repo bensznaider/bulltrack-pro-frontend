@@ -45,8 +45,8 @@ export default function SignupPage() {
     <main className="min-h-screen flex items-center justify-center p-6 bg-[#111714]">
       <div className="w-full max-w-sm space-y-4 bg-white p-6 rounded-lg shadow-lg">
         <span className="flex flex-col gap-2 items-center">
-          <h1 className="text-2xl font-semibold">Bulltrack Pro</h1>
-          <h2 className="text-xl">Sign Up</h2>
+          <h1 className="text-2xl font-semibold text-[#2D2D2D]">Bulltrack Pro</h1>
+          <h2 className="text-xl text-[#2D2D2D]">Sign Up</h2>
         </span>
 
         <form className="flex flex-col gap-3" onSubmit={onSignup}>
@@ -57,7 +57,7 @@ export default function SignupPage() {
           )}
 
           <input
-            className="w-full border rounded px-3 py-2"
+            className="w-full border rounded px-3 py-2 text-[#2D2D2D]"
             type="email"
             id="email"
             name="email"
@@ -69,7 +69,7 @@ export default function SignupPage() {
           />
 
           <input
-            className="w-full border rounded px-3 py-2"
+            className="w-full border rounded px-3 py-2 text-[#2D2D2D]"
             type="password"
             id="password"
             name="password"
@@ -89,9 +89,9 @@ export default function SignupPage() {
           </button>
         </form>
 
-        <p className="text-sm">
+        <p className="text-sm text-[#2D2D2D]">
           Ya tenés una cuenta?{' '}
-          <a className="underline" href="/login">
+          <a className="underline text-[#2D2D2D]" href="/login">
             Iniciar sesión
           </a>
         </p>
