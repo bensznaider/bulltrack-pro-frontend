@@ -1,36 +1,168 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🐂 Bulltrack Pro – Frontend  
+Full-Stack Engineering Challenge (Seed28)
 
-## Getting Started
+Frontend dashboard for **Bulltrack**, a bovine genetic ranking platform where cattle producers evaluate bulls using dynamic genetic scoring, filtering, and user-specific favorites.
 
-First, run the development server:
+Built with **Next.js App Router**, **Tailwind CSS**, and a feature-based architecture.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Tech Stack
+
+| Layer | Tech |
+|------|------|
+| Framework | Next.js 14+ (App Router) |
+| Styling | Tailwind CSS |
+| Charts | Recharts (RadarChart) |
+| Language | TypeScript |
+| State | React state + hooks |
+| Auth | JWT via cookie |
+
+---
+
+## 🔐 Authentication Flow
+
+Auth is handled using a **JWT token stored in cookies** so middleware can control routing.
+
+### Route Behavior
+
+| Route | Behavior |
+|------|----------|
+| `/` | Redirects to `/dashboard` if authenticated, else `/login` |
+| `/login` | Redirects to dashboard if already logged in |
+| `/signup` | Redirects to dashboard if already logged in |
+| `/dashboard` | Protected — redirects to login if no token |
+
+Implemented using **Next.js middleware**.
+
+---
+
+## 🧭 App Architecture
+
+The project uses a **feature-based structure** for scalability.
+
+```
+src/
+ ├─ app/           → Routing layer only
+ ├─ features/      → Business domains (auth, bulls, dashboard)
+ ├─ components/    → Reusable UI primitives
+ ├─ hooks/
+ ├─ lib/           → API calls, utilities
+ └─ types/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Responsibilities
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Folder | Role |
+|-------|------|
+| `app/` | Next.js routing (pages, layouts) |
+| `features/` | Feature logic and UI |
+| `components/` | Shared UI (Button, Loader, etc.) |
+| `lib/` | API clients and helpers |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🐂 Bulls Dashboard
 
-To learn more about Next.js, take a look at the following resources:
+The dashboard displays ranked bulls using data from the backend.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Server-driven pagination  
+- Server-side filtering  
+- Search by ear tag or name  
+- Dynamic Bull Score display  
+- Radar chart visualization of 5 genetic metrics  
+- Favorite toggle per user  
 
-## Deploy on Vercel
+### Radar Chart Metrics
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Each bull includes 5 stats displayed in a radar chart:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Crecimiento  
+- Facilidad de parto  
+- Reproducción  
+- Moderación  
+- Carcasa  
+
+Rendered with **Recharts RadarChart**.
+
+---
+
+## ⭐ Favorites
+
+Favorites are user-specific.
+
+Frontend interacts with:
+
+```
+POST /favorites/:bullId/toggle
+GET /favorites
+```
+
+Used to mark/unmark bulls as favorites.
+
+---
+
+## ⏳ Loading States
+
+The UI implements **skeleton loader** for:
+
+- Bulls list loading
+
+This improves perceived performance and avoids layout shifts.
+
+---
+
+## ⚙️ Environment Variables
+
+### `.env` (project default)
+
+```
+NEXT_PUBLIC_API_URL=https://your-backend.onrender.com/api
+```
+
+### `.env.local` (local development)
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:3001/api
+```
+
+---
+
+## 🛠 Setup
+
+```
+npm install
+npm run dev
+```
+
+---
+
+## 📡 Backend Integration
+
+All API requests use:
+
+```ts
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+```
+
+Example:
+
+```ts
+await fetch(`${API_URL}/bulls?page=1&limit=10`);
+```
+
+---
+
+## 🧩 Design Goals
+
+- Pixel-consistent UI with Figma  
+- Server-driven data (no frontend filtering)  
+- Feature-driven architecture  
+- Clean separation of routing and UI  
+- Professional loading and error handling  
+
+---
+
+This frontend pairs with the **Bulltrack Pro backend** to deliver a full-stack cattle genetics ranking platform.

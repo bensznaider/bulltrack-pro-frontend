@@ -47,6 +47,7 @@ export default function DashboardPage() {
     toggleBullFavorite,
     togglingFavorites,
     showFavoritesOnly,
+    error,
   } = useBullsContext();
 
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
@@ -93,22 +94,27 @@ export default function DashboardPage() {
 
   return (
     <div className="h-full">
-      <p className="text-[14px] text-[#2D2D2D] font-normal flex items-center mb-2">
-        <CloudSync className="inline-block mr-2" size={16} />
+      <p className="text-xs md:text-[14px] text-[#2D2D2D] font-normal flex items-center mb-2">
+        <CloudSync className="inline-block mr-2 flex-shrink-0" size={16} />
         {lastUpdateText}
       </p>
-      <div className="flex justify-between items-center">
-        <h1 className="text-[32px] text-[#2D2D2D] font-semibold">
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-3 py-2 rounded mb-4 text-sm">
+          {error}
+        </div>
+      )}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+        <h1 className="text-xl sm:text-2xl md:text-[32px] text-[#2D2D2D] font-semibold">
           Resultados de la clasificación
         </h1>
         <button
-          className="flex items-center gap-2 bg-[#1C2620] text-white text-[12px] px-[12px] py-[8px] rounded-[8px] cursor-pointer"
+          className="flex items-center gap-2 bg-[#1C2620] text-white text-xs md:text-[12px] px-3 md:px-[12px] py-2 md:py-[8px] rounded-[8px] cursor-pointer flex-shrink-0"
           onClick={() => {}}
         >
           Exportar <ArrowDownToLine size={12} />
         </button>
       </div>
-      <p className="text-[14px] text-[#2D2D2D] mb-6">
+      <p className="text-xs md:text-[14px] text-[#2D2D2D] mb-4 md:mb-6">
         Los resultados están ordenados por Bulltrack Score que reflejan tus
         objetivos de producción
       </p>
@@ -118,13 +124,13 @@ export default function DashboardPage() {
           <button
             type="button"
             onClick={() => setIsAccordionOpen(!isAccordionOpen)}
-            className="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-body hover:text-heading hover:bg-neutral-secondary-medium gap-3 [&[aria-expanded='true']]:rounded-b-none [&[aria-expanded='true']]:shadow-none transition-all cursor-pointer"
+            className="flex items-center justify-between w-full p-3 md:p-5 font-medium rtl:text-right text-body hover:text-heading hover:bg-neutral-secondary-medium gap-3 [&[aria-expanded='true']]:rounded-b-none [&[aria-expanded='true']]:shadow-none transition-all cursor-pointer"
             aria-expanded={isAccordionOpen}
             aria-controls="accordion-card-body-1"
           >
-            <span className="flex">
-              <Info className="inline-block mr-2" size={24} />
-              <p className="font-bold text-[16px]">Criterios del ranking</p>
+            <span className="flex items-center gap-2 min-w-0">
+              <Info className="flex-shrink-0" size={20} />
+              <p className="font-bold text-sm md:text-[16px]">Criterios del ranking</p>
             </span>
             <ChevronDown
               size={20}
@@ -140,7 +146,7 @@ export default function DashboardPage() {
             className="border-default rounded-b-[8px] bg-white"
             aria-labelledby="accordion-card-heading-1"
           >
-            <p className="p-4 md:p-5 mb-2 text-body">
+            <p className="p-3 md:p-4 lg:p-5 mb-2 text-sm md:text-base text-body">
               El ranking se determina tomando cinco criterios: crecimiento,
               facilidad de parto, reproducción, moderación y carcasa.
             </p>
@@ -148,32 +154,32 @@ export default function DashboardPage() {
         )}
       </div>
       {/* Search bar */}
-      <div className="w-full bg-[#F1F1F1] rounded-[8px] border-[0px] mb-4 p-[16px] flex items-center justify-between">
-        <div className="flex gap-4 w-[60%]">
-          <div className="relative w-[70%]">
+      <div className="w-full bg-[#F1F1F1] rounded-[8px] border-[0px] mb-4 p-3 md:p-4 lg:p-[16px] flex flex-col lg:flex-row lg:items-center gap-4 lg:justify-between">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full lg:w-auto lg:flex-1">
+          <div className="relative flex-1 sm:flex-none sm:w-[200px] md:w-[280px]">
             <input
               type="text"
               placeholder="Busca por caravana o nombre"
               value={searchQuery}
               onChange={(e) => handleSearchChange(e.target.value)}
-              className="w-full p-[12px] pr-[40px] rounded-[8px] border border-gray-300 bg-white font-normal text-[16px] text-[#2D2D2D] placeholder:text-gray-400"
+              className="w-full p-2 md:p-[12px] pr-8 md:pr-[40px] rounded-[8px] border border-gray-300 bg-white font-normal text-sm md:text-[16px] text-[#2D2D2D] placeholder:text-gray-400"
             />
             <Search
-              size={18}
-              className="absolute right-[12px] top-1/2 transform -translate-y-1/2 text-[#2D2D2D] pointer-events-none"
+              size={16}
+              className="absolute right-2 md:right-[12px] top-1/2 transform -translate-y-1/2 text-[#2D2D2D] pointer-events-none flex-shrink-0"
             />
           </div>
-          <div className="flex gap-1 items-center text-[#2D2D2D] text-[20px]">
+          <div className="flex gap-1 items-center text-[#2D2D2D] text-base md:text-[20px] whitespace-nowrap">
             <p className="font-bold">{showFavoritesOnly ? displayedBulls.length : total ?? 0}</p>
-            <p className="font-normal"> resultados</p>
+            <p className="font-normal text-xs md:text-base"> resultados</p>
           </div>
         </div>
         {/* Pagination and Limit Select */}
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 w-full lg:w-auto">
           <select
             value={limit}
             onChange={(e) => handleLimitChange(Number(e.target.value))}
-            className="px-[12px] py-[8px] bg-white border border-gray-300 rounded-[8px] text-[14px] text-[#2D2D2D] font-medium cursor-pointer hover:border-gray-400 font-inherit"
+            className="px-2 md:px-[12px] py-2 md:py-[8px] bg-white border border-gray-300 rounded-[8px] text-xs md:text-[14px] text-[#2D2D2D] font-medium cursor-pointer hover:border-gray-400 font-inherit w-full sm:w-auto"
           >
             <option value={5}>5</option>
             <option value={10}>10</option>
@@ -183,39 +189,39 @@ export default function DashboardPage() {
             <button
               onClick={() => goToPage(page - 1)}
               disabled={page === 1}
-              className="p-[8px] bg-[#F1F1F1] rounded-[8px] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#E6E6E6]"
+              className="p-2 md:p-[8px] bg-[#F1F1F1] rounded-l-[8px] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#E6E6E6]"
             >
-              <ChevronLeft size={18} color="#2D2D2D" />
+              <ChevronLeft size={16} color="#2D2D2D" />
             </button>
-            <span className="text-[14px] text-[#2D2D2D] font-medium mx-[12px] text-center">
+            <span className="text-xs md:text-[14px] text-[#2D2D2D] font-medium mx-2 md:mx-[12px] text-center">
               {page}
             </span>
             <button
               onClick={() => goToPage(page + 1)}
               disabled={page >= totalPages}
-              className="p-[8px] bg-[#F1F1F1] rounded-[8px] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#E6E6E6]"
+              className="p-2 md:p-[8px] bg-[#F1F1F1] rounded-r-[8px] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#E6E6E6]"
             >
-              <ChevronRight size={18} color="#2D2D2D" />
+              <ChevronRight size={16} color="#2D2D2D" />
+            </button>
+          </div>
+          <div className="flex">
+            <button
+              className="px-3 md:px-[24px] py-2 md:py-[8px] bg-[#1C2620] rounded-l-[8px] cursor-pointer"
+              onClick={() => {}}
+            >
+              <List size={16} color="white" />
+            </button>
+            <button
+              className="px-3 md:px-[24px] py-2 md:py-[8px] bg-[#E6E6E6] rounded-r-[8px] cursor-pointer"
+              onClick={() => {}}
+            >
+              <Grid2x2 size={16} color="#2D2D2D" />
             </button>
           </div>
         </div>
-        <div>
-          <button
-            className="px-[24px] py-[8px] bg-[#1C2620] rounded-l-[8px] cursor-pointer"
-            onClick={() => {}}
-          >
-            <List color="white" />
-          </button>
-          <button
-            className="px-[24px] py-[8px] bg-[#E6E6E6] rounded-r-[8px] cursor-pointer"
-            onClick={() => {}}
-          >
-            <Grid2x2 color="#2D2D2D" />
-          </button>
-        </div>
       </div>
       {/* Bulls list */}
-      <div className="flex flex-col gap-3 mb-4">
+      <div className="flex flex-col gap-2 md:gap-3 mb-4">
         {loading ? (
           <>
             <BullCardSkeleton />
