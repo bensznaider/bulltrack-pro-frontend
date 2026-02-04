@@ -161,7 +161,20 @@ await fetch(`${API_URL}/bulls?page=1&limit=10`);
 - Server-driven data (no frontend filtering)  
 - Feature-driven architecture  
 - Clean separation of routing and UI  
-- Professional loading and error handling  
+- Professional loading and error handling
+
+---
+
+
+## 🔮 Future Improvements (2 more weeks)
+
+- Pixel-perfect polish: finalize spacing/typography/states to match Figma across desktop + tablet, including hover/active/focus accessibility states, dropdowns, etc. Requires full design specifications.
+- Consider TanStack Query for caching/pagination ergonomics.
+- Error boundaries + retry UI: friendly error screens for failed requests with retry actions and safe fallbacks.
+- Favorites UX improvements: optimistic toggle with rollback on failure.
+- Radar chart polish: add tooltips, and responsive sizing for the 5-metric visualization.
+- Component atomization: split BullCard into smaller components and expand shared UI primitives (Button, Loader, Filters, etc.).
+- Admin panel.
 
 ---
 
