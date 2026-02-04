@@ -46,10 +46,19 @@ export default function DashboardPage() {
     updateFilters,
     toggleBullFavorite,
     togglingFavorites,
+    showFavoritesOnly,
   } = useBullsContext();
 
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  // Filter bulls by favorites if favorites-only mode is enabled
+  const displayedBulls = useMemo(() => {
+    if (showFavoritesOnly) {
+      return bulls.filter(bull => bull.isFavorite);
+    }
+    return bulls;
+  }, [bulls, showFavoritesOnly]);
 
   const handleLimitChange = (newLimit: number) => {
     updateFilters({ ...filters, limit: newLimit, page: 1 });
@@ -155,7 +164,7 @@ export default function DashboardPage() {
             />
           </div>
           <div className="flex gap-1 items-center text-[#2D2D2D] text-[20px]">
-            <p className="font-bold">{total ?? 0}</p>
+            <p className="font-bold">{showFavoritesOnly ? displayedBulls.length : total ?? 0}</p>
             <p className="font-normal"> resultados</p>
           </div>
         </div>
@@ -216,7 +225,7 @@ export default function DashboardPage() {
             <BullCardSkeleton />
           </>
         ) : (
-          bulls.map((bull) => (
+          displayedBulls.map((bull) => (
             <BullCard
               key={bull.id}
               bull={bull}

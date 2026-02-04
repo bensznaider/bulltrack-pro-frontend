@@ -28,6 +28,8 @@ export function useBulls(initialOptions?: BullsListOptions) {
     initialOptions || { page: 1, limit: 10 }
   );
 
+  const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+
   const getToken = useCallback(() => {
     return document.cookie
       .split('; ')
@@ -101,6 +103,10 @@ export function useBulls(initialOptions?: BullsListOptions) {
     setFilters(newOptions);
   }, [filters]);
 
+  const toggleFavoritesFilter = useCallback(() => {
+    setShowFavoritesOnly(prev => !prev);
+  }, []);
+
   // Fetch bulls when filters change
   useEffect(() => {
     fetchBulls();
@@ -115,6 +121,8 @@ export function useBulls(initialOptions?: BullsListOptions) {
     goToPage,
     refetch: fetchBulls,
     toggleBullFavorite,
+    showFavoritesOnly,
+    toggleFavoritesFilter,
     isBullFavorited: (bullId: number) => state.bulls.find(bull => bull.id === bullId)?.isFavorite ?? false,
   };
 }
