@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { loginUser } from "@/lib/api";
 import { Loader } from "@/components/Loader";
 
 export default function LoginPage() {
@@ -17,8 +16,22 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const data = await loginUser(email, password);
-      document.cookie = `access_token=${encodeURIComponent(data.access_token)}; path=/;`;
+      // Use our API route that sets the cookie on the Next app server
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Login failed');
+      }
+
+      // Store email in localStorage
+      localStorage.setItem('userEmail', email);
       router.replace("/dashboard");
     } catch (err) {
       const message = err instanceof Error ? err.message : "Login failed";
