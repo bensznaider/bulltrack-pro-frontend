@@ -13,7 +13,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 function getTimeElapsedText(createdAt: string | undefined): string {
   if (!createdAt) return "Datos actualizados";
@@ -49,10 +49,24 @@ export default function DashboardPage() {
   } = useBullsContext();
 
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleLimitChange = (newLimit: number) => {
     updateFilters({ ...filters, limit: newLimit, page: 1 });
   };
+
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+  };
+
+  // Sets a timer to avoid making API calls for every keystroke
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      updateFilters({ ...filters, search: searchQuery || undefined, page: 1 });
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
 
   const lastUpdateText = useMemo(() => {
     if (bulls.length === 0) return "Datos actualizados";
@@ -127,6 +141,8 @@ export default function DashboardPage() {
             <input
               type="text"
               placeholder="Busca por caravana o nombre"
+              value={searchQuery}
+              onChange={(e) => handleSearchChange(e.target.value)}
               className="w-full p-[12px] pr-[40px] rounded-[8px] border border-gray-300 bg-white font-normal text-[16px] text-[#2D2D2D] placeholder:text-gray-400"
             />
             <Search
